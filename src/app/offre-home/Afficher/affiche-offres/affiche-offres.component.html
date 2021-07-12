@@ -1,0 +1,90 @@
+<div class="row"  ><input class="btn btn-primary btn-white mt30 pull-right" type="submit" name="submit" (click)="btnClick();" value="Ajouter une Offre" /></div>
+
+
+
+        <div class="row"  >
+             <div  class="col-md-3" *ngFor="let i of ListOffres" >
+                            <div     style="color :white">
+                            <tr><strong>Libelle :</strong>{{i.libelle}}</tr>
+                            <tr><strong>Description:</strong> {{i.description}}</tr>
+                            <tr><strong>Pourcentage :</strong>{{i.pourcentage}}</tr>
+                            <tr> <strong>Article:</strong> {{i.article}}</tr>
+                            <tr><strong>Validite :</strong>{{i.validite}}</tr>
+                            <br>
+                            <div class="row" >
+                              <button class="btn btn-outline-danger"style="color :red " (click)="SuppInscrit(i.id)" >
+                                Delete
+                            </button>
+                             <button  class="btn btn-outline-success" style="color :green  "  (click)="ModifOffre(i)"  >
+                                Update
+                            </button> 
+                          </div>
+                          </div>  
+                        </div>
+                    </div>
+  
+                 
+          
+      <br>        
+     <form #g="ngForm"> 
+
+            <div class="row">
+              <label for="three">Description:*</label>
+                <input class="form-control" type="text" id="three" name="description" #l="ngModel"   
+                            required pattern="[a-z-A-Z]+$"  [(ngModel)]="offre.description">
+                            <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+                              <div *ngIf="l.errors.required"> description is a required field </div>
+                              <div *ngIf="l.errors.pattern"> It must contain only letters</div>
+                              </div>
+             </div>
+              
+            <div class="row">
+                          <label for="four">Pourcentage:*</label>
+                          <input class="form-control" type="text" id="four" name="pourcentage"  
+                           [(ngModel)]="offre.pourcentage" required #j="ngModel" pattern="[0-9]+$">
+                           <div class="alert alert-danger" *ngIf="j.invalid && j.touched">
+                            <div *ngIf="j.errors.required"> pourcentage is a required field </div>
+                            <div *ngIf="j.errors.pattern"> It must contain only numbers</div>
+                          
+             </div>
+              
+             <div class="row">
+                          <label for="five">Article:*</label>
+                          <input class="form-control" type="text"  id="five" name="article"  
+                          [(ngModel)]="offre.article" required #a="ngModel"   pattern="[a-z-A-Z]+$" >
+                          <div class="alert alert-danger" *ngIf="a.invalid && a.touched">
+                            <div *ngIf="a.errors.required"> article is a required field </div>
+                            <div *ngIf="a.errors.pattern"> It must contain only letters</div>
+                          </div>
+            </div>
+              
+            <div class="row">
+                          <label for="five">libelle:*</label>
+                          <input class="form-control" type="text"  id="five" name="libelle"  
+                          [(ngModel)]="offre.libelle" required #x="ngModel"   pattern="[a-z-A-Z]+$" >
+                          <div class="alert alert-danger" *ngIf="x.invalid && x.touched">
+                            <div *ngIf="x.errors.required"> libelle is a required field </div>
+                            <div *ngIf="x.errors.pattern"> It must contain only letters</div>
+                          </div>
+            </div>
+                        
+              
+            <div class="row">
+                          <label for="five">Validite:*</label>
+                          <input class="form-control" type="text"  id="five" name="validite"  
+                          [(ngModel)]="offre.validite" required #m="ngModel"   pattern="[0-9]+$">
+                          <div class="alert alert-danger" *ngIf="m.touched && m.invalid">
+                            <div *ngIf="m.errors.required"> Validite is a required field </div>
+                            <div *ngIf="m.errors.pattern"> It must contain only numbers</div>
+          </div>
+                         
+          </div>
+          
+          <div class="d-grid gap-7 d-md-flex justify-content-md-end">
+                          <button type="button" class="btn btn-block btn-success" style="width: 50%; " [disabled]="g.invalid"  (click)="Modification()" >Update</button>
+           </div>
+           </div>
+           </form>
+        
+                
+            
